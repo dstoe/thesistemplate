@@ -1,0 +1,55 @@
+\documentclass[abstracton,twoside,notitlepage]{scrreprt}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fbb} % Includes a pretty nice font
+\usepackage{geometry} % Needed for the titlepage
+\usepackage[ngerman,english]{babel}
+\usepackage[breaklinks=true]{hyperref}
+\usepackage{natbib}
+\usepackage{newtxmath} % For formulas in the correct font
+\usepackage{graphicx}
+\usepackage{pgf}
+% Only for the blindtext in this example
+\usepackage{blindtext}
+
+% Handle relative paths for pgf images located in build/fig
+\let\pgfimageWithoutPath\pgfimage
+\renewcommand{\pgfimage}[2][]{\pgfimageWithoutPath[#1]{build/fig/#2}}
+
+% Use english as main language
+\selectlanguage{english}
+
+\title{My Thesis is Totally Awesome}
+\author{Max Mustermann}
+\date{\today}
+
+\begin{document}
+	% A, B, C page numbering on the title pages (though these numbers
+	% aren't shown anywhere, except for some document viewers).
+	\pagenumbering{Alph}
+	\input{titlepage}
+	\cleardoublepage
+	% i, ii, iii page numbering for the abstract and table of contents
+	\pagenumbering{roman}
+	\input{abstract}
+	\begin{otherlanguage}{ngerman}
+		\input{zusammenfassung}
+	\end{otherlanguage}
+	\cleardoublepage
+	\tableofcontents
+	\cleardoublepage
+	% Normal page counting for the content.
+	\pagenumbering{arabic}
+	\input{introduction}
+	\input{methods}
+	\input{experiments}
+	\input{discussion}
+	\input{appendices}
+	\cleardoublepage
+	\bibliographystyle{plainnat}
+	\bibliography{literature}
+	\begin{otherlanguage}{ngerman}
+		\cleardoublepage
+		\input{declaration}
+	\end{otherlanguage}
+\end{document}

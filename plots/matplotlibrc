@@ -1,0 +1,10 @@
+pgf.rcfonts : False
+font.family : serif
+
+figure.figsize : 5.6, 3.4
+
+axes.titlesize : medium
+axes.spines.top : False
+axes.spines.right : False
+
+errorbar.capsize : 3
